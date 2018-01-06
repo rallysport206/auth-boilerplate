@@ -20,7 +20,7 @@ router.post('/login', passport.authenticate('local', {
 router.get('/signup', function(req, res){
   res.render('auth/signup');
 });
-router.post('/signup', function(req,res, next){
+router.post('/signup', function(req, res, next){
   console.log('req.body is', req.body);
   // res.send('signup post route coming soon');
   db.user.findOrCreate({
@@ -34,9 +34,9 @@ router.post('/signup', function(req,res, next){
   }).spread(function(user, wasCreated){
     if(wasCreated){
       //good job, you didn't try to make a duplicate!
-      passport.authenticate('local',{
+      passport.authenticate('local', {
         successRedirect: '/profile',
-        successFlash: 'Successfully logged in',
+        successFlash: 'Successfully logged in'
       })(req, res, next);
     }
     else {
